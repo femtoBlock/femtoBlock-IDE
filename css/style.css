@@ -20,11 +20,38 @@ body {
     user-select: none;
 }
 
+#full-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 99999;
+    background-color: #FFF;
+}
+
+#full-loading > .box > img {
+    width: 160px;
+    margin-bottom: 10px;
+    animation: objectMoveLoading 3s infinite;
+}
+
+#full-loading > .box > .label {
+    font-size: 36px;
+    color: #F1C40F;
+    font-weight: bold;
+}
+
 .page {
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 100%;
+    position: relative;
 }
 
 .page > .main {
@@ -35,12 +62,13 @@ body {
     flex-direction: column;
 
     overflow: hidden;
+    position: relative;
 }
 
 .page > .main > header {
     background-color: #F1C40F;
     box-shadow: 0 0 10px rgb(0 0 0 / 39%);
-    z-index: 3990;
+    z-index: 99;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -56,6 +84,11 @@ body {
     font-weight: bold;
     color: #FFF;
     padding: 20px 30px;
+}
+
+.embed .header-logo {
+    font-size: 18px;
+    padding: 10px 10px;
 }
 
 ul.switch-mode {
@@ -80,6 +113,15 @@ ul.switch-mode > li {
 ul.switch-mode > li.active {
     background-color: #FFF;
     color: #B7950B;
+}
+
+.embed ul.switch-mode {
+    padding: 4px;
+}
+
+.embed ul.switch-mode > li {
+    padding: 4px 8px;
+    font-size: 12px;
 }
 
 ul.top-bar-button {
@@ -108,6 +150,17 @@ ul.top-bar-button > li > button {
 
 ul.top-bar-button > li > button:hover {
     background-color: #9A7D0A;
+}
+
+.embed ul.top-bar-button {
+    padding-right: 6px;
+}
+
+.embed ul.top-bar-button > li > button {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+    margin-right: 0px;
 }
 
 /*
@@ -204,7 +257,7 @@ ul.switch-mode > li:last-child {
 .page > .main > footer {
     width: 100%;
     box-shadow: 0 0 10px rgb(0 0 0 / 39%);
-    z-index: 3990;
+    z-index: 99;
     background-color: #FFF;
 }
 
@@ -313,6 +366,41 @@ ul.switch-mode > li:last-child {
     box-shadow: 0 0 6px rgb(0 0 0 / 60%);
 }
 
+.page > .main > footer > .status-bar {
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    justify-content: space-between;
+    color: #FFF;
+    background-color: #1C2833;
+    align-items: center;
+}
+
+.page > .main > footer > .status-bar > div {
+    
+}
+
+.page > .main > footer > .status-bar > div.left {
+    padding-left: 20px;
+}
+
+.page > .main > footer > .status-bar > div.right {
+    padding-right: 12px;
+}
+
+.page > .main > footer > .status-bar > div > ul {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.page > .main > footer > .status-bar > div > ul > li {
+    list-style: none;
+    padding: 4px 8px;
+    border-left: 1px solid #2C3E50;
+}
+
 #blocklyArea {
     width: 100%;
     height: 100%;
@@ -331,6 +419,29 @@ ul.switch-mode > li:last-child {
     width: 300px;
 
     display: none;
+    flex-shrink: 0;
+}
+
+#terminal-h-resize {
+    position: absolute;
+    width: 6px;
+    height: 100%;
+    background-color: #424949;
+    cursor: col-resize;
+    top: 0;
+    right: 0;
+    z-index: 3988;
+    opacity: 0;
+    display: none;
+}
+
+#terminal-h-resize:hover,
+#terminal-h-resize.active {
+    opacity: 1;
+}
+
+#terminal-h-resize.active {
+    width: 30px;
 }
 
 #terminal > header {
@@ -410,6 +521,25 @@ ul.switch-mode > li:last-child {
 
     border-radius: 10px;
     box-shadow: 0 0 10px rgb(0 0 0 / 39%);
+}
+
+@media screen and (max-width: 1200px) {
+    .dialog {
+        top: 5%;
+        left: 5%;
+        width: 90%;
+        height: 90%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .dialog {
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
 }
 
 .dialog::before {
@@ -660,6 +790,40 @@ ul.switch-mode > li:last-child {
     padding-top: 0;
 }
 
+@media screen and (max-width: 1200px) {
+    .extension-category-list { 
+        flex-basis: 160px;
+    }
+
+    .extension-list > li {
+        width: calc(100% / 3);
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .extension-category-list { 
+        flex-basis: 140px;
+    }
+
+    .extension-category-list > li { 
+        font-size: 12px;
+    }
+    
+    .extension-list > li {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .extension-category-list {
+        display: none;
+    }
+
+    .extension-list > li {
+        width: 100%;
+    }
+}
+
 .extension-box {
     border-radius: 4px;
     background-color: #FFF;
@@ -777,7 +941,750 @@ ul.switch-mode > li:last-child {
     display: block;
 }
 
+#github_avatar {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+}
 
+#open-github-dialog {
+    display: none;
+}
+
+#github-dialog {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3989;
+    padding: 40px 20px;
+
+    display: none;
+}
+
+#github-dialog > section {
+    background-color: #FFF;
+    width: 380px;
+    border-radius: 4px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#github-dialog > section > header > div.title {
+    padding: 14px;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+}
+
+#github-dialog > section > header > div.title > .close-btn {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #B2BABB;
+    padding: 10px;
+}
+
+#github-dialog > section > header > div.title > .close-btn:hover {
+    color: #7F8C8D;
+}
+
+#github-dialog > section > header > ul {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#github-dialog > section > header > ul > li {
+    text-align: center;
+    padding: 6px;
+    flex-grow: 1;
+    width: 50%;
+    list-style: none;
+    border: 1px solid #ECF0F1;
+    border-left: none;
+    font-size: 14px;
+}
+
+#github-dialog > section > header > ul > li:last-child {
+    border-right: none;
+}
+
+#github-dialog > section > header > ul > li:hover {
+    background-color: #F8F9F9;
+}
+
+#github-dialog > section > header > ul > li.active {
+    border-bottom: 3px solid #F1C40F;
+}
+
+#github-dialog > section > section > ul {
+    padding: 0;
+    margin: 0;
+    height: 300px;
+    padding: 10px 0;
+    overflow: auto;
+}
+
+#github-dialog > section > section > ul > li {
+    padding: 10px 20px;
+    list-style: none;
+}
+
+#github-dialog > section > section > ul > li:hover {
+    background-color: #F8F9F9;
+}
+
+#github-dialog > section > section > ul > li.active {
+    background-color: #F1C40F;
+    color: #FFF;
+}
+
+#github-dialog > section > section > form {
+    padding: 20px;
+}
+
+#github-dialog > section > section > form > label {
+    display: block;
+    width: 100%;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+
+#github-dialog > section > section > form > input {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #ECF0F1;
+    padding: 6px;
+    outline: none;
+    border-radius: 4px;
+}
+
+#github-dialog > section > section > form > input:focus {
+    border-color: #D0D3D4;
+}
+
+#github-dialog > section > section > form > label > input {
+    margin-bottom: 14px;
+}
+
+#github-dialog > section > section .control-button {
+    text-align: right;
+    padding: 20px;
+}
+
+#github-dialog > section > section > form > .control-button {
+    padding: 0;
+}
+
+#github-dialog > section > section .control-button > button {
+    background-color: #F1C40F;
+    color: #FFF;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    outline: none;;
+}
+
+#github-dialog > section > section .control-button > button:hover {
+    background-color: #D4AC0D;
+}
+
+#github-dialog-open {
+    display: block;
+}
+
+#github-dialog-new {
+    display: none;
+}
+
+#port-select-dialog {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3990;
+    padding: 40px 20px;
+
+    display: none;
+}
+
+#port-select-dialog > section {
+    background-color: #FFF;
+    width: 380px;
+    border-radius: 4px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#port-select-dialog > section > header {
+    position: relative;
+}
+
+#port-select-dialog > section > header > div.title {
+    padding: 14px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#port-select-dialog > section > header > .close-btn {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #B2BABB;
+    padding: 10px;
+}
+
+#port-select-dialog > section > header > .close-btn:hover {
+    color: #7F8C8D;
+}
+
+#port-select-dialog > section > section > ul {
+    padding: 0;
+    margin: 0;
+    height: 300px;
+    padding: 10px 0;
+    overflow: auto;
+}
+
+#port-select-dialog > section > section > ul > li {
+    padding: 10px 20px;
+    list-style: none;
+}
+
+#port-select-dialog > section > section > ul > li:hover {
+    background-color: #F8F9F9;
+}
+
+#port-select-dialog > section > section > ul > li.active {
+    background-color: #F1C40F;
+    color: #FFF;
+}
+
+#port-select-dialog > section > section > .control-button {
+    text-align: right;
+    padding: 20px;
+}
+
+#port-select-dialog > section > section > .control-button > button {
+    background-color: #F1C40F;
+    color: #FFF;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    outline: none;;
+}
+
+#port-select-dialog > section > section > .control-button > button:hover {
+    background-color: #D4AC0D;
+}
+
+#project-create-dialog {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3989;
+    padding: 40px 20px;
+    overflow: auto;
+
+    display: none;
+}
+
+#project-create-dialog > section {
+    background-color: #FFF;
+    width: 100%;
+    border-radius: 4px;
+}
+
+#project-create-dialog > section > header {
+    position: relative;
+}
+
+#project-create-dialog > section > header > div.title {
+    padding: 14px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#project-create-dialog > section > header > .close-btn {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #B2BABB;
+    padding: 10px;
+}
+
+#project-create-dialog > section > header > .close-btn:hover {
+    color: #7F8C8D;
+}
+
+#project-create-dialog > section > section {
+    padding: 20px;
+}
+
+#project-create-dialog > section > section .control {
+    margin-bottom: 20px;
+}
+
+#project-create-dialog > section > section .control > * {
+    display: block;
+    /* width: 100%; */
+}
+
+#project-create-dialog > section > section .control > label {
+    margin-bottom: 10px;
+}
+
+#project-create-dialog > section > section > form input {
+    /* display: block; */
+    /* width: 100%; */
+    margin-bottom: 20px;
+    border: 1px solid #ECF0F1;
+    padding: 6px;
+    outline: none;
+    border-radius: 4px;
+}
+
+#project-create-dialog > section > section > form input:focus {
+    border-color: #D0D3D4;
+}
+
+#project-create-dialog > section > section > form label {
+    font-size: 14px;
+}
+
+#project-create-dialog > section button {
+    background-color: #F1C40F;
+    color: #FFF;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    outline: none;;
+}
+
+#project-create-dialog > section button:hover {
+    background-color: #D4AC0D;
+}
+
+
+.image-select {
+    width: 100%;
+}
+
+.image-select > ul {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+.image-select > ul > li {
+    list-style: none;
+}
+
+.image-select > ul > li > div {
+    margin-right: 20px;
+    border: 1px solid #ECF0F1;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 20px;;
+}
+
+.image-select > ul > li > div:hover {
+    border: 1px solid #D0D3D4;
+}
+
+.image-select > ul > li > div.active {
+    border: 3px solid #F1C40F;
+}
+
+.image-select > ul > li > div > .image {
+    margin-bottom: 10px;
+}
+
+.image-select > ul > li > div > .name {
+    text-align: center;
+    font-size: 14px;
+}
+
+#hardware-select > ul > li {
+    width: 20%;
+}
+
+@media screen and (max-width: 1200px) {
+    #hardware-select > ul > li {
+        width: 25%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #hardware-select > ul > li {
+        width: calc(100% / 3);
+    }
+}
+
+#hardware-select > ul > li.show-when-click-see-more {
+    display: none;
+}
+
+#hardware-select > #board-see-more-btn {
+    width: 100%;
+    color: #1C2833;
+    background-color: #E5E7E9;
+}
+
+#hardware-select > #board-see-more-btn:hover {
+    background-color: #D7DBDD;
+}
+
+.box-level-select {
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 0 !important;
+}
+
+#level-select > ul > li img {
+    width: 100px;
+}
+
+#firmware-upgrade-dialog {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3989;
+    padding: 40px 20px;
+
+    display: none;
+}
+
+#firmware-upgrade-dialog.fullScreen {
+    display: block !important;
+    padding: 0;
+}
+
+#firmware-upgrade-dialog  > section {
+    background-color: #FFF;
+    max-width: 580px;
+    border-radius: 4px;
+    margin: auto;
+}
+
+#firmware-upgrade-dialog.fullScreen  > section {
+    max-width: 100%;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+}
+
+#firmware-upgrade-dialog  > section > header {
+    position: relative;
+}
+
+#firmware-upgrade-dialog  > section > header > div.title {
+    padding: 14px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#firmware-upgrade-dialog  > section > header > .close-btn {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #B2BABB;
+    padding: 10px;
+}
+
+#firmware-upgrade-dialog.fullScreen  > section > header > .close-btn {
+    display: none;
+}
+
+#firmware-upgrade-dialog  > section > header > .close-btn:hover {
+    color: #7F8C8D;
+}
+
+#firmware-upgrade-dialog  > section > section {
+    padding: 20px;
+    padding-top: 0;
+    text-align: center;
+}
+
+#firmware-upgrade-dialog  > section > section > article {
+    display: none;
+}
+
+#firmware-upgrade-dialog  > section > section > article.todo {
+    /* display: block; */
+}
+
+#firmware-upgrade-dialog  > section > section > article.doing {
+    /* display: block; */
+}
+
+#firmware-upgrade-dialog  > section > section > article.done {
+    /* display: block; */
+}
+
+#firmware-upgrade-dialog  > section > section > article > p,
+#firmware-upgrade-dialog  > section > section > article > select,
+#firmware-upgrade-dialog  > section > section > article > .progress-box {
+    margin-bottom: 30px;
+}
+
+#firmware-upgrade-dialog  > section > section > article > p {
+    font-size: 20px;
+}
+
+#firmware-upgrade-dialog  > section > section > article > select {
+    display: block;
+    width: 280px;
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #ECF0F1;
+    padding: 6px;
+    outline: none;
+    border-radius: 4px;
+}
+
+#firmware-upgrade-dialog  > section > section > article button {
+    display: inline-block;
+    margin: auto;
+
+    background-color: #F1C40F;
+    color: #FFF;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 22px;
+    outline: none;;
+    font-size: 18px;
+}
+
+#firmware-upgrade-dialog  > section > section > article button:hover {
+    background-color: #D4AC0D;
+}
+
+#firmware-upgrade-dialog  > section > section > article button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+#firmware-upgrade-dialog  > section > section > article button:disabled:hover {
+    background-color: #F1C40F;
+}
+
+#firmware-upgrade-dialog  > section > section > article button#continue-upload {
+    background-color: #FFFFFF;
+    color: #000;
+}
+
+#firmware-upgrade-dialog  > section > section > article button#continue-upload:hover {
+    background-color: #ECF0F1;
+}
+
+#firmware-upgrade-dialog  > section > section > article > .icon {
+    font-size: 120px;
+    margin: 40px auto;
+}
+
+#firmware-upgrade-dialog  > section > section > article.todo > .icon {
+    color: #F1C40F;
+}
+
+#firmware-upgrade-dialog  > section > section > article.doing > .icon.loading {
+    animation: objectMoveLoading 3s infinite;
+}
+
+#firmware-upgrade-dialog .note-for-rp2 {
+    margin-top: 15px;
+    color: #FF0000;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+@keyframes objectMoveLoading {
+    0% {
+        transform: translateY(0px);
+    }
+    25% {
+        transform: translateY(-10px);
+    }
+    50% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+#firmware-upgrade-dialog  > section > section > article.done > .icon.success {
+    color: #2ECC71;
+}
+
+#firmware-upgrade-dialog  > section > section > article.done > .icon.fail {
+    color: #E74C3C;
+}
+
+#firmware-upgrade-dialog  > section > section > article > .warning {
+    color: #FF0000;
+    font-size: 16px;
+}
+
+#firmware-upgrade-dialog  > section > section > article > .progress-box {
+    position: relative;
+    width: 100%;
+    height: 36px;
+    background-color: #F0F3F4;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+#firmware-upgrade-dialog  > section > section > article > .progress-box > .back-drop {
+    width: 50%;
+    height: 100%;
+    background-color: #2ECC71;
+}
+
+#firmware-upgrade-dialog  > section > section > article > .progress-box > .caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#firmware-upgrade-dialog  > section > section > article .close-btn {
+    background-color: #FFF;
+    color: #424949;
+}
+
+#firmware-upgrade-dialog  > section > section > article .close-btn:hover {
+    background-color: #F0F3F4;
+}
+
+#disconnect-device {
+    display: none;
+}
+
+#code-share-dialog  {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3989;
+    padding: 40px 20px;
+
+    display: none;
+}
+
+#code-share-dialog  > section {
+    background-color: #FFF;
+    max-width: 400px;
+    border-radius: 4px;
+    margin: auto;
+    overflow: hidden;
+}
+
+#code-share-dialog  > section > header {
+    position: relative;
+}
+
+#code-share-dialog  > section > header > div.title {
+    padding: 14px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#code-share-dialog  > section > header > .close-btn {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #B2BABB;
+    padding: 10px;
+}
+
+#code-share-dialog  > section > header > .close-btn:hover {
+    color: #7F8C8D;
+}
+
+#code-share-dialog .preview-block {
+    width: 100%;
+    height: 200px;
+}
+
+#code-share-dialog > section > section > .bottom-menu {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+}
+
+#code-share-dialog > section > section > .bottom-menu > li {
+    flex-grow: 1;
+    list-style: none;
+    border-top: 1px solid #F7F9F9;
+    border-right: 1px solid #F7F9F9;
+    text-align: center;
+}
+
+#code-share-dialog > section > section > .bottom-menu > li:last-child {
+    border-right: none;
+}
+
+#code-share-dialog > section > section > .bottom-menu > li:hover {
+    background-color: #F7F9F9;
+}
+
+#code-share-dialog > section > section > .bottom-menu > li > i {
+    font-size: 24px;
+    padding: 8px;
+}
+
+.embed-only {
+    display: none;
+}
+
+
+
+/* Blockly hardover */
 .blocklyToolboxDiv {
     background-color: #FDFEFE !important;
     box-shadow: 0 0 10px rgb(0 0 0 / 39%);
@@ -831,26 +1738,46 @@ ul.switch-mode > li:last-child {
     font-size: 22px !important;
 }
 
-/* width */
+.blocklyMainBackground {
+    stroke-width: 0
+}
+
+/* Scrollbar styles */
 ::-webkit-scrollbar {
     width: 10px;
 }
   
-/* Track */
 ::-webkit-scrollbar-track {
     background-color: #FFF;
 }
    
-/* Handle */
 ::-webkit-scrollbar-thumb {
     background: #D0D3D4; 
     border-radius: 10px;
     margin: 0 2px;
 }
   
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #B3B6B7; 
 }
+/*
+.blocklyCheckedBox {
+    fill: #FF0000 !important;
+    fill-opacity: 1 !important;
+}
+*/
 
+/* Notify hardover */
+.notiflix-confirm input {
+    width: 100%;
+    border-radius: 100px;
+    padding: 8px 12px;
+    border: #D0D3D4 solid 1px;
+    background-color: #F0F3F4;
+    outline: none;
+}
+
+.notiflix-confirm input:focus {
+    border-color: #D0D3D4;
+}
 

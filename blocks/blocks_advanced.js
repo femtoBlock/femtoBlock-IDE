@@ -244,5 +244,53 @@ Blockly.defineBlocksWithJsonArray([
   "colour": "#8E44AD",
   "tooltip": "",
   "helpUrl": ""
+},
+{
+  "type": "send_into_source",
+  "message0": "send %1 to dashboard via %2",
+  "args0": [
+    {
+      "type": "input_value",
+      "name": "value"
+    },
+    {
+      "type": "input_value",
+      "name": "source"
+    }
+  ],
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": "#8E44AD",
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "board_reset",
+  "message0": "hard reset",
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": "#8E44AD",
+  "tooltip": "Reset board and start program again (NOT recommend)",
+  "helpUrl": ""
+},
+{
+  "type": "run_in_background",
+  "message0": "run in background %1 %2",
+  "args0": [
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "callback"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": "#8E44AD",
+  "tooltip": "",
+  "helpUrl": ""
 }
 ]);

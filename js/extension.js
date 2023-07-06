@@ -57,6 +57,12 @@ let installExtension = async (extensionId) => {
 
 let removeExtension = async (extensionId) => {
     fs.remove(`/extension/${extensionId}`);
+    if (isElectron) {
+        let path = `${rootPath}/../extension/${extensionId}`;
+        if (nodeFS.existsSync(path)) {
+            nodeFS.rmdirSync(path, { recursive: true });
+        }
+    }
 
     updateBlockCategory();
 
@@ -99,7 +105,15 @@ let showExtensionList = (extensionList) => {
     $("#extension-dialog .extension-list").html('');
 
     let extensionInstalledList = fs.ls("/extension");
+    if (isElectron) {
+        extensionInstalledList = extensionInstalledList.concat(nodeFS.ls(sharedObj.extensionDir));
+    }
+    let board = boards.find(board => board.id === boardId);
     for (const [id, info] of Object.entries(extensionList)) {
+        if (Array.isArray(info?.chip) && (!info.chip.includes(board.chip))) { // Skip if chip not support
+            continue;
+        }
+
         $("#extension-dialog .extension-list").append(`
         <li>
             <div class="extension-box${extensionInstalledList.indexOf(id) >= 0 ? " installed" : ""}" data-extension-id="${id}">

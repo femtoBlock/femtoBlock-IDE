@@ -113,6 +113,21 @@ Blockly.defineBlocksWithJsonArray([
     "extensions": ["logic_op_tooltip"]
   },
   {
+    "type": "logic_negate",
+    "message0": "%{BKY_LOGIC_NEGATE_TITLE}",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "BOOL",
+        "check": "Boolean"
+      }
+    ],
+    "output": "Boolean",
+    "colour": "#34495E",
+    "tooltip": "%{BKY_LOGIC_NEGATE_TOOLTIP}",
+    "helpUrl": "%{BKY_LOGIC_NEGATE_HELPURL}"
+  },
+  {
     "type": "math_trig",
     "message0": "%1 %2",
     "args0": [
@@ -138,5 +153,85 @@ Blockly.defineBlocksWithJsonArray([
     "colour": "#34495E",
     "helpUrl": "%{BKY_MATH_TRIG_HELPURL}",
     "extensions": ["math_op_tooltip"]
+  },
+  {
+    "type": "math_round",
+    "message0": "%1 %2",
+    "args0": [
+      {
+        "type": "field_dropdown",
+        "name": "OP",
+        "options": [
+          ["%{BKY_MATH_ROUND_OPERATOR_ROUND}", "ROUND"],
+          ["%{BKY_MATH_ROUND_OPERATOR_ROUNDUP}", "ROUNDUP"],
+          ["%{BKY_MATH_ROUND_OPERATOR_ROUNDDOWN}", "ROUNDDOWN"]
+        ]
+      },
+      {
+        "type": "input_value",
+        "name": "NUM",
+        "check": "Number"
+      }
+    ],
+    "output": "Number",
+    "colour": "#34495E",
+    "helpUrl": "%{BKY_MATH_ROUND_HELPURL}",
+    "tooltip": "%{BKY_MATH_ROUND_TOOLTIP}"
+  },
+  {
+    "type": "text",
+    "message0": "%1",
+    "args0": [{
+      "type": "field_input",
+      "name": "TEXT",
+      "text": ""
+    }],
+    "output": "String",
+    "colour": "#34495E",
+    "helpUrl": "%{BKY_TEXT_TEXT_HELPURL}",
+    "tooltip": "%{BKY_TEXT_TEXT_TOOLTIP}",
+    "extensions": [
+      "text_quotes",
+      "parent_tooltip_when_inline"
+    ]
+  },
+  {
+    "type": "text_join",
+    "message0": "",
+    "output": "String",
+    "colour": "#34495E",
+    "helpUrl": "%{BKY_TEXT_JOIN_HELPURL}",
+    "tooltip": "%{BKY_TEXT_JOIN_TOOLTIP}",
+    "mutator": "text_join_mutator"
+  },
+  {
+    "type": "random_seed",
+    "message0": "random seed",
+    "previousStatement": null,
+    "nextStatement": null,
+    "colour": "#34495E",
+    "tooltip": "initialize the pseudo-random number generator",
+    "helpUrl": ""
+  },
+  {
+    "type": "math_modulo",
+    "message0": "%{BKY_MATH_MODULO_TITLE}",
+    "args0": [
+      {
+        "type": "input_value",
+        "name": "DIVIDEND",
+        "check": "Number"
+      },
+      {
+        "type": "input_value",
+        "name": "DIVISOR",
+        "check": "Number"
+      }
+    ],
+    "inputsInline": true,
+    "output": "Number",
+    "colour": "#34495E",
+    "tooltip": "%{BKY_MATH_MODULO_TOOLTIP}",
+    "helpUrl": "%{BKY_MATH_MODULO_HELPURL}"
   },
 ]);
